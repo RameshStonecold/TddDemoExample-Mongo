@@ -26,15 +26,15 @@ class EmployeeListTest {
         departmentDto.deptCreatedDate= LocalDateTime.now()
         departmentDto.deptUpdatedDate= LocalDateTime.now()
 
-        var dtoHashSet=HashSet<DepartmentDto>()
-        dtoHashSet.add(departmentDto)
+        var dtoList=ArrayList<DepartmentDto>()
+        dtoList.add(departmentDto)
 
         var employeeDto= EmployeeDto()
         employeeDto.empId="23456"
         employeeDto.empName="arun k"
         employeeDto.empCreatedDate= LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
-        employeeDto.departmentDtoSet= dtoHashSet
+        employeeDto.departmentDtoList= dtoList
 
       var empState=  EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto)
 
@@ -51,28 +51,27 @@ class EmployeeListTest {
         departmentDto2.deptCreatedDate=LocalDateTime.now()
         departmentDto2.deptUpdatedDate=LocalDateTime.now()
 
-        var dtoHashSet2=HashSet<DepartmentDto>()
-        dtoHashSet2.add(departmentDto2)
+        var dtoList2=ArrayList<DepartmentDto>()
+        dtoList2.add(departmentDto2)
 
         var employeeDto2=EmployeeDto()
         employeeDto2.empId="1234"
         employeeDto2.empName="varun dhawan k"
         employeeDto2.empCreatedDate=LocalDateTime.now()
         employeeDto2.empUpdatedDate= LocalDateTime.now()
-        employeeDto2.departmentDtoSet= dtoHashSet
+        employeeDto2.departmentDtoList= dtoList2
 
-        var empState2=  EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto2)
-        var employee2=Employee()
-        employee2.employeeState=empState2
+        var emp2=  EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto2)
+
 
         var empList= ArrayList<Employee>()
         empList.add(employee1)
-        empList.add(employee2)
+        empList.add(emp2)
 
 
         var employeeList=EmployeeList(empList)
 
-        employeeList.updateEmployee(empState2)
+        employeeList.updateEmployee(emp2)
 
 
     }

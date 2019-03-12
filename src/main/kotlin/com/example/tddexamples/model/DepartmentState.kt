@@ -2,7 +2,6 @@ package com.example.tddexamples.model
 
 
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDateTime
 import javax.persistence.Id
 
@@ -60,7 +59,7 @@ import javax.persistence.Id
     }
 
     override fun setDeptUpdatedDate(deptUpdatedDateTime: LocalDateTime) {
-        this.deptUpdatedDate=deptUpdatedDate
+        this.deptUpdatedDate=deptUpdatedDateTime
     }
 
 

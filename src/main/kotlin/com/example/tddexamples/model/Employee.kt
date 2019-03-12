@@ -37,26 +37,40 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
 
     override fun getEmpUpdatedDate(): LocalDateTime {
          return employeeState.getEmpUpdatedDate()
+
     }
 
     override fun setEmpUpdatedDate(empUpdatedDate: LocalDateTime) {
         this.employeeState.setEmpUpdatedDate(empUpdatedDate)
     }
 
-    override fun getDepartmentStateSet(): HashSet<Department> {
-        return employeeState.getDepartmentStateSet()
+    override fun getDepartmentStateList(): List<DepartmentState>? {
+        return employeeState.getDepartmentStateList()
     }
 
-    override fun setDepartementSateSet(departmentSet: HashSet<Department>) {
-        this.employeeState.setDepartementSateSet(departmentSet)
+    override fun setDepartementStateList(departmentStateList: List<DepartmentState>) {
+        this.employeeState.setDepartementStateList(departmentStateList)
     }
 
+    fun createEmployee(employee:Employee):EmployeeState{
+        this.employeeState.setEmpId(employee.employeeState.getEmpId()!!)
+        this.employeeState.setEmpName(employee.employeeState.getEmpName()!!)
+        this.employeeState.setEmpCreatedDate(employee.employeeState.getEmpCreatedDate())
+        this.employeeState.setDepartementStateList(employee.employeeState.getDepartmentStateList()!!)
+        /*this.employeeState.getDepartmentStateList()?.
+                map { x->Department(x as DepartmentState) }?.stream()?.
+                forEach { y->y.create() }*/
+
+        return this.employeeState
+    }
 
 
 
     fun updateEmployee(employee: Employee) {
         this.employeeState.setEmpName(employee.getEmpName()!!)
-        this.employeeState.setDepartementSateSet(employee.getDepartmentStateSet())
+        this.employeeState.setEmpUpdatedDate(employee.getEmpUpdatedDate())
+       employee.getDepartmentStateList()?.map { x->Department(x as DepartmentState) }?.
+               stream()?.map {  }
 
     }
 

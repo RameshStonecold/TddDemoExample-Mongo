@@ -26,7 +26,7 @@ import java.time.LocalDateTime
                  set(value) {
                          field = value
                  }
-         var departmentDtoSet= HashSet<DepartmentDto>()
+         var departmentDtoList:List<DepartmentDto>?=null
                  get() = field
                  set(value) {
                          field = value

@@ -18,8 +18,8 @@ interface IEmployee {
     fun setEmpUpdatedDate(empUpdatedDate:LocalDateTime)
 
 
-    fun getDepartmentStateSet():HashSet<Department>
-    fun setDepartementSateSet(departmentSet:HashSet<Department>)
+    fun getDepartmentStateList():List<DepartmentState>?
+    fun setDepartementStateList(departmentStateList:List<DepartmentState>)
 
 
 }

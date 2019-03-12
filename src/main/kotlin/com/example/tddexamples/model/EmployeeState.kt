@@ -8,6 +8,9 @@ import javax.persistence.*
  class EmployeeState:IEmployee {
 
 
+
+
+
     @Id
     private var empId: String? = null
 
@@ -17,7 +20,7 @@ import javax.persistence.*
 
    private var empUpdatedDate: LocalDateTime = LocalDateTime.now()
 
-   private var departmentStateSet= HashSet<Department>()
+    private var departmentStateList:List<DepartmentState>?=null
 
     override fun getEmpId(): String? {
         return this.empId
@@ -56,13 +59,13 @@ import javax.persistence.*
 
     }
 
-    override fun getDepartmentStateSet(): HashSet<Department> {
-
-       return departmentStateSet
+    override fun getDepartmentStateList(): List<DepartmentState>? {
+        return this.departmentStateList
     }
 
-    override fun setDepartementSateSet(departmentSet: HashSet<Department>) {
-        this.departmentStateSet=departmentSet
+    override fun setDepartementStateList(departmentStateList: List<DepartmentState>) {
+
+         this.departmentStateList=departmentStateList
     }
 
 

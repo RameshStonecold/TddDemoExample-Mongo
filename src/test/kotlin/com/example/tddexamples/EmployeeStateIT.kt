@@ -30,15 +30,15 @@ class EmployeeStateIT {
         departmentDto.deptCreatedDate=LocalDateTime.now()
         departmentDto.deptUpdatedDate=LocalDateTime.now()
 
-        var dtoHashSet=HashSet<DepartmentDto>()
-        dtoHashSet.add(departmentDto)
+        var dtoList=ArrayList<DepartmentDto>()
+        dtoList.add(departmentDto)
 
         var employeeDto=EmployeeDto()
         employeeDto.empId="1234"
         employeeDto.empName="arun k"
         employeeDto.empCreatedDate=LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
-        employeeDto.departmentDtoSet= dtoHashSet
+        employeeDto.departmentDtoList= dtoList
 
         var empDto= iEmployeeService.saveEmp(employeeDto)
 
@@ -76,15 +76,15 @@ class EmployeeStateIT {
         departmentDto.deptCreatedDate=LocalDateTime.now()
         departmentDto.deptUpdatedDate=LocalDateTime.now()
 
-        var dtoHashSet=HashSet<DepartmentDto>()
-        dtoHashSet.add(departmentDto)
+        var dtoList=ArrayList<DepartmentDto>()
+        dtoList.add(departmentDto)
 
         var employeeDto=EmployeeDto()
         employeeDto.empId="1234"
         employeeDto.empName="YYYY"
         employeeDto.empCreatedDate=LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
-        employeeDto.departmentDtoSet= dtoHashSet
+        employeeDto.departmentDtoList= dtoList
 
         Assert.assertTrue(employeeDto!=null)
 
@@ -106,10 +106,4 @@ class EmployeeStateIT {
     }
 
 
-    @Test
-    fun listTest()
-    {
-
-
-    }
 }

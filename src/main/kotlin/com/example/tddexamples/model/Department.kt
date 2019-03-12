@@ -48,6 +48,14 @@ class Department(private var departmentState: DepartmentState):IDepartment by de
         this.departmentState.setDeptUpdatedDate(deptUpdatedDateTime)
     }
 
+
+    fun update(department: Department) {
+        this.departmentState.setDeptName(department.departmentState.getDeptName()!!)
+        this.departmentState.setDeptUpdatedDate(department.departmentState.getDeptUpdatedDate())
+        this.departmentState.setSal(department.departmentState.getSal()!!)
+
+    }
+
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }

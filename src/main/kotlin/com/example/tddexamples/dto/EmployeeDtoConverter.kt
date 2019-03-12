@@ -1,57 +1,61 @@
 package com.example.tddexamples.dto
 
 import com.example.tddexamples.model.DepartmentState
+import com.example.tddexamples.model.Employee
 import com.example.tddexamples.model.EmployeeState
+import org.springframework.beans.BeanUtils
 import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 class EmployeeDtoConverter {
 
     object Converter{
 
-        fun convertEmployeeDtoListToEmployeeList(empDtoList:List<EmployeeDto>):List<EmployeeState>
+        fun convertEmployeeDtoListToEmployeeList(empDtoList:List<EmployeeDto>):List<Employee>
         {
-            val empList= ArrayList<EmployeeState>()
+            val empList= ArrayList<Employee>()
             empDtoList.forEach { x->empList.add(this.convertEmpDtoToEmpBean(x)) }
             return empList
         }
 
-        fun convertEmpDtoToEmpBean(employeeDto: EmployeeDto): EmployeeState
+        fun convertEmpDtoToEmpBean(employeeDto: EmployeeDto): Employee
         {
 
-            var deptSet=this.convertSetOfDeptDtoToBean(employeeDto.departmentDtoSet)
+            var deptSet=this.convertSetOfDeptDtoToBean(employeeDto.departmentDtoList!!)
 
-            var employeeState=EmployeeState()
-            employeeState.empId=employeeDto.empId
-            employeeState.empName=employeeDto.empName
-            employeeState.empCreatedDate=employeeDto.empCreatedDate
-            employeeState.empUpdatedDate=employeeDto.empUpdatedDate
-            employeeState.departmentStateSet=deptSet
+            val employeeState=EmployeeState()
 
+            BeanUtils.copyProperties(employeeDto,employeeState)
 
+            if(employeeDto.departmentDtoList != null)
+            {
+                val list =ArrayList<DepartmentState>()
 
-            return employeeState
+                 employeeDto.departmentDtoList?.
+                         forEach { x->list.
+                                 add(EmployeeDtoConverter.Converter.convertDeptDtotoBean(x))}
+
+                employeeState.setDepartementStateList(list)
+
+            }
+
+            return Employee(employeeState)
         }
 
-        fun convertSetOfDeptDtoToBean(deptDtoSet:HashSet<DepartmentDto>) :HashSet<DepartmentState>
+        fun convertSetOfDeptDtoToBean(deptDtoList:List<DepartmentDto>) :ArrayList<DepartmentState>
         {
-            val deptSet= HashSet<DepartmentState>()
+            val deptList= ArrayList<DepartmentState>()
 
-            deptDtoSet.forEach {x -> deptSet.add(this.convertDeptDtotoBean(x))}
+            deptDtoList.forEach {x -> deptList.add(this.convertDeptDtotoBean(x))}
 
-            return deptSet
+            return deptList
         }
 
         fun convertDeptDtotoBean(departmentDto: DepartmentDto) : DepartmentState
         {
 
-            var departmentState =DepartmentState()
-            departmentState.deptId=departmentDto.deptId
-            departmentState.deptName=departmentDto.deptName
-            departmentState.deptCreatedDate=departmentDto.deptCreatedDate
-            departmentState.deptUpdatedDate=departmentDto.deptUpdatedDate
+            val departmentState =DepartmentState()
 
-
+            BeanUtils.copyProperties(departmentDto,departmentState)
 
             return departmentState
         }
@@ -74,38 +78,31 @@ class EmployeeDtoConverter {
 
         fun empBeanToEmpDto(employeeState: EmployeeState): EmployeeDto {
 
-            var departmentDtoSet=EmployeeDtoConverter.Converter.convertSetOfDeptBeanToDto(employeeState.departmentStateSet)
-
             var employeeDto =EmployeeDto()
-              employeeDto.empId=employeeState.empId
-            employeeDto.empName= employeeState.empName!!
-            employeeDto.empCreatedDate=employeeState.empCreatedDate
-            employeeDto.empUpdatedDate=employeeState.empUpdatedDate
-            employeeDto.departmentDtoSet=departmentDtoSet
 
+            BeanUtils.copyProperties(employeeState,employeeDto)
+
+            var departmentDtoSet=EmployeeDtoConverter.Converter.convertSetOfDeptBeanToDto(employeeState.getDepartmentStateList()!!)
 
 
             return employeeDto
         }
 
-        fun convertSetOfDeptBeanToDto(deptSet: Set<DepartmentState>):HashSet<DepartmentDto>
+        fun convertSetOfDeptBeanToDto(deptList: List<DepartmentState>):List<DepartmentDto>
         {
-            var deptDtoSet=HashSet<DepartmentDto>()
+            var deptDtoList=ArrayList<DepartmentDto>()
 
-            deptSet.forEach { x->deptDtoSet.add(this.convertDeptBeanToDeptDto(x)) }
+            deptList.forEach { x->deptDtoList.add(this.convertDeptBeanToDeptDto(x)) }
 
-            return deptDtoSet
+            return deptDtoList
         }
 
         fun convertDeptBeanToDeptDto(departmentState: DepartmentState):DepartmentDto
         {
 
             var departmentDto=DepartmentDto()
-            departmentDto.deptId=departmentState.deptId
-            departmentDto.deptName= departmentState.deptName!!
-            departmentDto.deptCreatedDate=departmentState.deptCreatedDate
-            departmentDto.deptUpdatedDate=departmentState.deptUpdatedDate
-            departmentDto.sal= departmentState.sal!!
+
+            BeanUtils.copyProperties(departmentState,departmentDto)
 
             return departmentDto
         }
