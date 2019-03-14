@@ -25,7 +25,7 @@ class EmployeeController {
     }
 
     @GetMapping("/getEmpById/{employeeId}")
-    fun getEmployee(@PathVariable ("employeeId")employeeId: String): EmployeeState?
+    fun getEmployee(@PathVariable ("employeeId")employeeId: String): EmployeeDto?
     {
         var emp =iEmployeeService.getEmployeeWithId(employeeId)
 

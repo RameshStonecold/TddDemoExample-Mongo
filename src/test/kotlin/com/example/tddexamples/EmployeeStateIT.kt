@@ -58,35 +58,48 @@ class EmployeeStateIT {
       @Test
        fun getByEmpById()
       {
-           var id="12345"
+           var id="12346789"
 
           var emp=iEmployeeService.getEmployeeWithId(id)
 
           Assert.assertNotNull(emp)
+          println(emp.toString())
        }
 
 
     @Test
     fun updateEmployee()
     {
-        var departmentDto=DepartmentDto()
+        val departmentDto=DepartmentDto()
         departmentDto.deptId="12345"
         departmentDto.deptName="z"
-        departmentDto.sal= "000"
+        departmentDto.sal= "2000"
         departmentDto.deptCreatedDate=LocalDateTime.now()
         departmentDto.deptUpdatedDate=LocalDateTime.now()
 
-        var dtoList=ArrayList<DepartmentDto>()
-        dtoList.add(departmentDto)
+        val departmentDto2=DepartmentDto()
+        departmentDto2.deptId="123450"
+        departmentDto2.deptName="Y"
+        departmentDto2.sal="1000"
+        departmentDto2.deptCreatedDate= LocalDateTime.now()
+        departmentDto2.deptUpdatedDate= LocalDateTime.now()
 
-        var employeeDto=EmployeeDto()
-        employeeDto.empId="1234"
+
+        val dtoList=ArrayList<DepartmentDto>()
+        dtoList.add(departmentDto)
+        dtoList.add(departmentDto2)
+
+
+        val employeeDto=EmployeeDto()
+        employeeDto.empId="12346789"
         employeeDto.empName="YYYY"
         employeeDto.empCreatedDate=LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
         employeeDto.departmentDtoList= dtoList
 
-        Assert.assertTrue(employeeDto!=null)
+        val emp=iEmployeeService.updateEmployee(employeeDto)
+
+       Assert.assertEquals("updated",emp)
 
     }
     @Test

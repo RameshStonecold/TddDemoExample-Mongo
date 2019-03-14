@@ -69,10 +69,6 @@ class EmployeeListTest {
         empList.add(emp2)
 
 
-        var employeeList=EmployeeList(empList)
-
-        employeeList.updateEmployee(emp2)
-
 
     }
 

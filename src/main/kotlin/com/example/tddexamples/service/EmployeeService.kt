@@ -2,20 +2,24 @@ package com.example.tddexamples.service
 
 import com.example.tddexamples.dto.EmployeeDto
 import com.example.tddexamples.dto.EmployeeDtoConverter
-import com.example.tddexamples.model.Employee
-import com.example.tddexamples.model.EmployeeState
+import com.example.tddexamples.model.*
 import com.example.tddexamples.repository.EmployeeRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.Arrays.stream
+import kotlin.streams.toList
+import java.util.stream.Collectors
+
+
 
 @Service
 class EmployeeService : IEmployeeService {
 
 
-
-
     @Autowired()
     lateinit var employeeRepo: EmployeeRepo
+
+
 
     override fun saveEmp(employeeDto: EmployeeDto): String {
 
@@ -29,31 +33,32 @@ class EmployeeService : IEmployeeService {
 
     }
 
-    override fun getEmployeeWithId(employeeId: String): EmployeeState? {
-        var emp = employeeRepo.findByEmpId(employeeId)
+    override fun getEmployeeWithId(employeeId: String): EmployeeDto? {
+
+        val empState = employeeRepo.findByEmpId(employeeId)
+
+       val emp= EmployeeDtoConverter.Converter.empBeanToEmpDto(empState)
+
         return emp
     }
 
 
-     /* override fun updateEmployee(employeeDto: EmployeeDto): String {
+     override fun updateEmployee(employeeDto: EmployeeDto): String {
 
-          var allEmpDtos=this.getAllEmps()
-          var allEmpsBeans =EmployeeDtoConverter.Converter.convertEmployeeDtoListToEmployeeList(allEmpDtos)
+         val oldEmpDto =this.getEmployeeWithId(employeeDto.empId!!)
 
-         var employee= EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto)
+        val oldEmployeeBean= EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(oldEmpDto!!)
 
-          employee.updateEmployee()
+         val newemployee= EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto)
 
-          var employeeList=EmployeeList()
-          employeeList.updateEmployee(employee)
+         val newDeptDtoList=employeeDto.departmentDtoList?.toList()
+         val newdeptStateList =EmployeeDtoConverter.Converter.convertSetOfDeptDtoToBean(newDeptDtoList!!)
+         val newdeptList=newdeptStateList.stream().
+                 map { x->Department(x as DepartmentState) }.toList()
 
-         // employeeRepo.save()
+       val newEmpState=  oldEmployeeBean.updateEmployee(newemployee,newdeptList)
 
-         var oldempBean =this.getEmployeeWithId(employeeDto.empId!!)
-         val oldEmpState=EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto)
-          val employee= Employee(oldEmpState)
-          var empState= employee.updateEmployee(oldEmpState)
-        employeeRepo.save(empState)
+         employeeRepo.save(newEmpState)
 
         return "updated"
     }
@@ -66,7 +71,6 @@ class EmployeeService : IEmployeeService {
         return empDtoList
     }
 
-*/
 
 
 

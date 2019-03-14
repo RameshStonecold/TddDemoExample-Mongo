@@ -1,6 +1,7 @@
 package com.example.tddexamples.model
 
 import java.time.LocalDateTime
+import kotlin.streams.toList
 
 
 class Employee(private var employeeState: EmployeeState): IEmployee by employeeState{
@@ -66,12 +67,19 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
 
 
 
-    fun updateEmployee(employee: Employee) {
+    fun updateEmployee(employee: Employee,deptList:List<Department>) : EmployeeState{
+
         this.employeeState.setEmpName(employee.getEmpName()!!)
         this.employeeState.setEmpUpdatedDate(employee.getEmpUpdatedDate())
-       employee.getDepartmentStateList()?.map { x->Department(x as DepartmentState) }?.
-               stream()?.map {  }
 
+       val oldDeptList= this.employeeState.
+               getDepartmentStateList()?.stream()?.
+               map {x->Department(x as DepartmentState)}?.toList()
+
+        val departmentList =DepartmentList()
+        departmentList.updateDepartmentList(oldDeptList!!,deptList)
+
+        return employeeState
     }
 
     override fun equals(other: Any?): Boolean {

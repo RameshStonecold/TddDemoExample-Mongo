@@ -4,21 +4,19 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 import javax.persistence.*
 
+
+
 @Document
  class EmployeeState:IEmployee {
-
-
-
-
 
     @Id
     private var empId: String? = null
 
     private var empName: String? = null
 
-   private var empCreatedDate: LocalDateTime = LocalDateTime.now()
+    private var empCreatedDate: LocalDateTime = LocalDateTime.now()
 
-   private var empUpdatedDate: LocalDateTime = LocalDateTime.now()
+    private var empUpdatedDate: LocalDateTime = LocalDateTime.now()
 
     private var departmentStateList:List<DepartmentState>?=null
 
