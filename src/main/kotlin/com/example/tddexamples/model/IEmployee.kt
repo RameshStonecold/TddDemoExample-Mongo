@@ -4,9 +4,8 @@ import java.time.LocalDateTime
 
 interface IEmployee {
 
-    fun getEmpId():String?
-    fun setEmpId(empId:String)
-
+    fun getId():String?
+    fun setId(empId:String)
 
     fun getEmpName():String?
     fun setEmpName(empName:String)

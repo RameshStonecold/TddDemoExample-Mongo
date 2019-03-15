@@ -1,4 +1,3 @@
-/*
 package com.example.tddexamples.model.idGenerators
 
 import java.io.Serializable
@@ -11,7 +10,8 @@ open class EmployeeId : Serializable{
     internal var id = UUID.randomUUID().toString()
 
     fun getId(): String {
-        return id
+
+       return this.id
     }
     fun setId(id: String) {
         this.id = id
@@ -25,4 +25,4 @@ open class EmployeeId : Serializable{
     }
 
 
-}*/
+}

@@ -1,11 +1,12 @@
 package com.example.tddexamples.dto
 
 
+import com.example.tddexamples.model.idGenerators.DepartmentId
 import java.time.LocalDateTime
 
  class DepartmentDto {
 
-         var deptId: String? = null
+         var departmentId=DepartmentId()
                  get() = field
                  set(value) {
                          field = value

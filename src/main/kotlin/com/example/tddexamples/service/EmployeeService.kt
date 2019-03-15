@@ -3,12 +3,10 @@ package com.example.tddexamples.service
 import com.example.tddexamples.dto.EmployeeDto
 import com.example.tddexamples.dto.EmployeeDtoConverter
 import com.example.tddexamples.model.*
-import com.example.tddexamples.repository.EmployeeRepo
+import com.example.tddexamples.repository.EmpRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.Arrays.stream
 import kotlin.streams.toList
-import java.util.stream.Collectors
 
 
 
@@ -16,8 +14,8 @@ import java.util.stream.Collectors
 class EmployeeService : IEmployeeService {
 
 
-    @Autowired()
-    lateinit var employeeRepo: EmployeeRepo
+    @Autowired
+    lateinit var empRepo: EmpRepo
 
 
 
@@ -27,7 +25,7 @@ class EmployeeService : IEmployeeService {
 
         var EmpState=   employee.createEmployee(employee)
 
-        employeeRepo.save(EmpState)
+        empRepo.save(EmpState)
 
         return "EmployeeState inserted"
 
@@ -35,7 +33,7 @@ class EmployeeService : IEmployeeService {
 
     override fun getEmployeeWithId(employeeId: String): EmployeeDto? {
 
-        val empState = employeeRepo.findByEmpId(employeeId)
+        var empState = empRepo.findById_id(employeeId)
 
        val emp= EmployeeDtoConverter.Converter.empBeanToEmpDto(empState)
 
@@ -43,9 +41,9 @@ class EmployeeService : IEmployeeService {
     }
 
 
-     override fun updateEmployee(employeeDto: EmployeeDto): String {
+     override fun updateEmployee(employeeDto: EmployeeDto,id:String): String {
 
-         val oldEmpDto =this.getEmployeeWithId(employeeDto.empId!!)
+         val oldEmpDto =this.getEmployeeWithId(id)
 
         val oldEmployeeBean= EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(oldEmpDto!!)
 
@@ -56,23 +54,18 @@ class EmployeeService : IEmployeeService {
          val newdeptList=newdeptStateList.stream().
                  map { x->Department(x as DepartmentState) }.toList()
 
-       val newEmpState=  oldEmployeeBean.updateEmployee(newemployee,newdeptList)
-
-         employeeRepo.save(newEmpState)
+         empRepo.save(oldEmployeeBean.updateEmployee(newemployee,newdeptList))
 
         return "updated"
     }
 
 
     override fun getAllEmps(): List<EmployeeDto> {
-        var allEmps = employeeRepo.findAll()
+        var allEmps = empRepo.findAll()
 
         var empDtoList = EmployeeDtoConverter.Converter.convertEmpListToEmpDtoList(allEmps)
         return empDtoList
     }
-
-
-
 
 
  /* override fun updateDepartment(departmentDto: DepartmentDto, employeeId: String): String

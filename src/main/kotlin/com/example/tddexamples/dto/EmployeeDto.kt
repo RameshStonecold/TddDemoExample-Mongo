@@ -1,12 +1,13 @@
 package com.example.tddexamples.dto
 
 
-
+import com.example.tddexamples.model.idGenerators.EmployeeId
 import java.time.LocalDateTime
+import java.util.*
 
- class EmployeeDto {
+class EmployeeDto {
 
-         var empId: String? = null
+         var employeeId=EmployeeId()
                  get() = field
                  set(value) {
                          field = value

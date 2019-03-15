@@ -10,7 +10,7 @@ import javax.persistence.*
  class EmployeeState:IEmployee {
 
     @Id
-    private var empId: String? = null
+    internal var id: String? = null
 
     private var empName: String? = null
 
@@ -20,12 +20,12 @@ import javax.persistence.*
 
     private var departmentStateList:List<DepartmentState>?=null
 
-    override fun getEmpId(): String? {
-        return this.empId
+    override fun getId(): String? {
+        return this.id
     }
 
-    override fun setEmpId(empId: String) {
-     this.empId=empId
+    override fun setId(empId: String) {
+     this.id=empId
     }
 
     override fun getEmpName(): String? {

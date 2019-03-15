@@ -1,5 +1,6 @@
 package com.example.tddexamples.model
 
+import com.example.tddexamples.model.idGenerators.DepartmentId
 import java.time.LocalDateTime
 
 
@@ -7,13 +8,13 @@ class Department(private var departmentState: DepartmentState):IDepartment by de
 
     constructor():this(DepartmentState())
 
-    override fun getDeptId(): String? {
-        return departmentState.getDeptId()
+    override fun getDepartmentID(): DepartmentId {
+        return departmentState.getDepartmentID()
     }
 
-    override fun setDeptId(deptId: String) {
-       this.departmentState.setDeptId(deptId)
-     }
+    override fun setDepartmentId(deptId: DepartmentId) {
+        this.departmentState.setDepartmentId(deptId)
+    }
 
     override fun getDeptName(): String? {
         return departmentState.getDeptName()
@@ -47,7 +48,6 @@ class Department(private var departmentState: DepartmentState):IDepartment by de
     override fun setDeptUpdatedDate(deptUpdatedDateTime: LocalDateTime) {
         this.departmentState.setDeptUpdatedDate(deptUpdatedDateTime)
     }
-
 
     fun update(department: Department) {
         this.departmentState.setDeptName(department.departmentState.getDeptName()!!)

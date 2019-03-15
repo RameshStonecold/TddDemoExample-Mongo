@@ -1,14 +1,17 @@
 package com.example.tddexamples.model
 
 
+import com.example.tddexamples.model.idGenerators.DepartmentId
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 import javax.persistence.Id
 
 @Document
   class DepartmentState :IDepartment {
+
+
     @Id
-    private var deptId:String?=null
+    private var departmentId=DepartmentId()
 
     private var deptName: String?=null
 
@@ -19,14 +22,15 @@ import javax.persistence.Id
     private var deptUpdatedDate: LocalDateTime = LocalDateTime.now()
 
 
-    override fun getDeptId(): String? {
-        return this.deptId
 
+    override fun getDepartmentID(): DepartmentId {
+        return this.departmentId
     }
 
-    override fun setDeptId(deptId: String) {
-        this.deptId=deptId
+    override fun setDepartmentId(deptId: DepartmentId) {
+       this.departmentId=deptId
     }
+
 
     override fun getDeptName(): String? {
         return this.deptName

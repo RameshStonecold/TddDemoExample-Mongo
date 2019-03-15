@@ -24,7 +24,7 @@ class EmployeeDtoConverter {
 
             val employeeState=EmployeeState()
 
-            BeanUtils.copyProperties(employeeDto,employeeState)
+            BeanUtils.copyProperties(employeeDto,employeeState,"id")
 
             if(employeeDto.departmentDtoList != null)
             {
@@ -52,7 +52,6 @@ class EmployeeDtoConverter {
 
         fun convertDeptDtotoBean(departmentDto: DepartmentDto) : DepartmentState
         {
-
             val departmentState =DepartmentState()
 
             BeanUtils.copyProperties(departmentDto,departmentState)
@@ -63,8 +62,6 @@ class EmployeeDtoConverter {
 
 
         //bean to dto
-
-
 
         fun convertEmpListToEmpDtoList(empList:List<EmployeeState>):List<EmployeeDto>
         {
@@ -85,10 +82,11 @@ class EmployeeDtoConverter {
            if (employeeState.getDepartmentStateList()!=null){
 
                val list=ArrayList<DepartmentDto>()
+
                employeeState.getDepartmentStateList()!!.forEach { x->list.
                        add(EmployeeDtoConverter.Converter.convertDeptBeanToDeptDto(x)) }
-               employeeDto.departmentDtoList=list
 
+               employeeDto.departmentDtoList=list
            }
 
             return employeeDto

@@ -1,7 +1,5 @@
-/*
 package com.example.tddexamples.model.idGenerators
 
-import lombok.ToString
 import java.io.Serializable
 import java.util.*
 import javax.persistence.Embeddable
@@ -26,4 +24,4 @@ class DepartmentId : Serializable{
     }
 
 
-}*/
+}

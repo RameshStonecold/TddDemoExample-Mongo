@@ -9,13 +9,9 @@ interface IEmployeeService {
 
     fun getEmployeeWithId(employeeId: String): EmployeeDto?
 
-    fun updateEmployee(employeeDto: EmployeeDto):String
+    fun updateEmployee(employeeDto: EmployeeDto, id: String):String
 
     fun getAllEmps():List<EmployeeDto>
 
-   // fun updateEmployee(employeeList:EmployeeList):String
 
-
-
-   // fun updateDepartment(departmentDto: DepartmentDto, employeeId: String):String
 }

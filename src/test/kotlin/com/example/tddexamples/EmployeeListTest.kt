@@ -4,12 +4,13 @@ import com.example.tddexamples.dto.DepartmentDto
 import com.example.tddexamples.dto.EmployeeDto
 import com.example.tddexamples.dto.EmployeeDtoConverter
 import com.example.tddexamples.model.Employee
-import com.example.tddexamples.model.EmployeeList
+import com.example.tddexamples.model.idGenerators.EmployeeId
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 import java.time.LocalDateTime
+import java.util.*
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -20,7 +21,7 @@ class EmployeeListTest {
     fun updateTest(){
 
         var departmentDto= DepartmentDto()
-        departmentDto.deptId="2345"
+        departmentDto.departmentId.setId("")
         departmentDto.deptName="AB"
         departmentDto.sal= "1000"
         departmentDto.deptCreatedDate= LocalDateTime.now()
@@ -30,7 +31,7 @@ class EmployeeListTest {
         dtoList.add(departmentDto)
 
         var employeeDto= EmployeeDto()
-        employeeDto.empId="23456"
+        employeeDto.employeeId= EmployeeId()
         employeeDto.empName="arun k"
         employeeDto.empCreatedDate= LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
@@ -45,7 +46,7 @@ class EmployeeListTest {
 
 //     Employee 2
         var departmentDto2=DepartmentDto()
-        departmentDto2.deptId="12345"
+        departmentDto2.departmentId.setId("")
         departmentDto2.deptName="ABc"
         departmentDto2.sal= "1000000"
         departmentDto2.deptCreatedDate=LocalDateTime.now()
@@ -55,7 +56,7 @@ class EmployeeListTest {
         dtoList2.add(departmentDto2)
 
         var employeeDto2=EmployeeDto()
-        employeeDto2.empId="1234"
+        employeeDto2.employeeId= EmployeeId()
         employeeDto2.empName="varun dhawan k"
         employeeDto2.empCreatedDate=LocalDateTime.now()
         employeeDto2.empUpdatedDate= LocalDateTime.now()

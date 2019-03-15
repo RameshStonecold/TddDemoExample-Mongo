@@ -1,13 +1,14 @@
 package com.example.tddexamples.model
 
+import com.example.tddexamples.model.idGenerators.DepartmentId
 import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDate
 import java.time.LocalDateTime
 
 interface IDepartment {
 
-    fun getDeptId():String?
-    fun setDeptId(deptId:String)
+    fun getDepartmentID(): DepartmentId
+    fun setDepartmentId(deptId:DepartmentId)
 
     fun getDeptName():String?
     fun setDeptName(deptName:String)

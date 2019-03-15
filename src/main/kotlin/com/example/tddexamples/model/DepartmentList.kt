@@ -3,30 +3,24 @@ package com.example.tddexamples.model
 class DepartmentList {
 
 
-
-  /*  private var departmentList:List<Department>?=null
-
-    constructor(deptList:List<Department>)
-    {
-        this.departmentList=deptList
-    }*/
-
-    fun updateDepartmentList(oldDeptList:List<Department>,newDeptList: List<Department>){
+    fun updateDepartmentList(oldDeptList:List<Department>,newDeptList: List<Department>):List<Department>{
 
         newDeptList.forEach { x->
 
-            val oldDeptMap=oldDeptList.associateBy( { it.getDeptId() },{it})
+            if (oldDeptList!=null) {
 
-            var oldDept= oldDeptMap.get(x.getDeptId())
+                val oldDeptMap = oldDeptList.associateBy({ it.getDepartmentID() }, { it })
 
-            if (oldDept?.getDeptId().equals(x.getDeptId()))
-            {
-                x.setDeptName(oldDept?.getDeptName()!!)
-                x.setDeptCreatedDate(oldDept.getDeptCreatedDate())
-                x.setSal(oldDept.getSal()!!)
+                val oldDept = oldDeptMap.get(x.getDepartmentID())
+
+                if (oldDept?.getDepartmentID()!!.equals(x.getDepartmentID())) {
+                    oldDept.setDeptName(x.getDeptName()!!)
+                    oldDept.setDeptUpdatedDate(x.getDeptUpdatedDate())
+                    oldDept.setSal(x.getSal()!!)
+                }
+
             }
-
         }
-
+        return newDeptList
     }
 }
