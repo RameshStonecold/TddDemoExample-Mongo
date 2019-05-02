@@ -9,27 +9,22 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
 
     constructor():this(EmployeeState())
 
-
     override fun getId(): String? {
-       return employeeState.getId()
+       return this.employeeState.getId()
     }
-
     override fun setId(empId: String) {
         this.employeeState.setId(empId)
     }
 
     override fun getEmpName(): String? {
-        return employeeState.getEmpName()
+        return this.employeeState.getEmpName()
     }
-
     override fun setEmpName(empName: String) {
-
         this.employeeState.setEmpName(empName)
     }
 
     override fun getEmpCreatedDate(): LocalDateTime {
-
-        return employeeState.getEmpCreatedDate()
+        return this.employeeState.getEmpCreatedDate()
     }
 
     override fun setEmpCreatedDate(empCreatedDate: LocalDateTime) {
@@ -37,8 +32,7 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
     }
 
     override fun getEmpUpdatedDate(): LocalDateTime {
-         return employeeState.getEmpUpdatedDate()
-
+         return this.employeeState.getEmpUpdatedDate()
     }
 
     override fun setEmpUpdatedDate(empUpdatedDate: LocalDateTime) {
@@ -46,7 +40,7 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
     }
 
     override fun getDepartmentStateList(): List<DepartmentState>? {
-        return employeeState.getDepartmentStateList()
+        return this.employeeState.getDepartmentStateList()
     }
 
     override fun setDepartementStateList(departmentStateList: List<DepartmentState>) {
@@ -74,18 +68,20 @@ class Employee(private var employeeState: EmployeeState): IEmployee by employeeS
                getDepartmentStateList()?.stream()?.
                map {x->Department(x as DepartmentState)}?.toList()
 
-        val departmentList =DepartmentList()
+        val departmentList =DepartmentList(oldDeptList!!)
 
-       val newDeptList= departmentList.updateDepartmentList(oldDeptList!!,deptList)
+       val newDeptList= departmentList.updateDepartmentList(deptList)
+
 
         val newDeptStateList =ArrayList<DepartmentState>()
 
         val departState =DepartmentState()
         newDeptList.forEach { x->
+
+            departState.setDepartmentId(x.getDepartmentId()!!)
            departState.setDeptName(x.getDeptName()!!)
             departState.setSal(x.getSal()!!)
             departState.setDeptCreatedDate(x.getDeptCreatedDate())
-            departState.setDepartmentId(x.getDepartmentID())
 
         }
         newDeptStateList.add(departState)

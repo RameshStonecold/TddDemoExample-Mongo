@@ -91,8 +91,8 @@ class EmployeeStateIT {
         var departmentId=DepartmentId()
         departmentId.setId("3a94ee05-5194-4413-9ece-601f14e13011")
         departmentDto.departmentId= departmentId
-        departmentDto.deptName="MNB"
-        departmentDto.sal= "700000"
+        departmentDto.deptName="Mahesh Babu"
+        departmentDto.sal= "900000"
         departmentDto.deptCreatedDate=LocalDateTime.now()
         departmentDto.deptUpdatedDate=LocalDateTime.now()
 
@@ -100,8 +100,8 @@ class EmployeeStateIT {
         var departmentId2=DepartmentId()
         departmentId2.setId("014a961a-5412-42ff-b585-4fa9f912d648")
         departmentDto2.departmentId= departmentId2
-        departmentDto2.deptName="LPQ"
-        departmentDto2.sal="110000"
+        departmentDto2.deptName="Kalyan Babu"
+        departmentDto2.sal="180000"
         departmentDto2.deptCreatedDate= LocalDateTime.now()
         departmentDto2.deptUpdatedDate= LocalDateTime.now()
 
@@ -115,7 +115,7 @@ class EmployeeStateIT {
         var employeeId=EmployeeId()
         employeeId.setId("5c8b9a595f0f517979b5987c")
         employeeDto.employeeId= employeeId
-        employeeDto.empName="Dasharath"
+        employeeDto.empName="Ramesh Stonecold"
         employeeDto.empCreatedDate=LocalDateTime.now()
         employeeDto.empUpdatedDate= LocalDateTime.now()
         employeeDto.departmentDtoList= dtoList

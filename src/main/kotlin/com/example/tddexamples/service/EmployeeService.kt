@@ -50,9 +50,14 @@ class EmployeeService : IEmployeeService {
          val newemployee= EmployeeDtoConverter.Converter.convertEmpDtoToEmpBean(employeeDto)
 
          val newDeptDtoList=employeeDto.departmentDtoList?.toList()
+
          val newdeptStateList =EmployeeDtoConverter.Converter.convertSetOfDeptDtoToBean(newDeptDtoList!!)
+
          val newdeptList=newdeptStateList.stream().
                  map { x->Department(x as DepartmentState) }.toList()
+
+         var departmentList = DepartmentList(newdeptList).updateDepartmentList(newdeptList)
+
 
          empRepo.save(oldEmployeeBean.updateEmployee(newemployee,newdeptList))
 

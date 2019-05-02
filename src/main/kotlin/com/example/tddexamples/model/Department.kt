@@ -8,8 +8,9 @@ class Department(private var departmentState: DepartmentState):IDepartment by de
 
     constructor():this(DepartmentState())
 
-    override fun getDepartmentID(): DepartmentId {
-        return departmentState.getDepartmentID()
+
+    override fun getDepartmentId(): DepartmentId? {
+        return this.departmentState.getDepartmentId()
     }
 
     override fun setDepartmentId(deptId: DepartmentId) {
@@ -17,7 +18,7 @@ class Department(private var departmentState: DepartmentState):IDepartment by de
     }
 
     override fun getDeptName(): String? {
-        return departmentState.getDeptName()
+        return this.departmentState.getDeptName()
     }
 
     override fun setDeptName(deptName: String) {

@@ -11,7 +11,7 @@ import javax.persistence.Id
 
 
     @Id
-    private var departmentId=DepartmentId()
+    internal var departmentId=DepartmentId()
 
     private var deptName: String?=null
 
@@ -23,14 +23,13 @@ import javax.persistence.Id
 
 
 
-    override fun getDepartmentID(): DepartmentId {
-        return this.departmentId
-    }
 
     override fun setDepartmentId(deptId: DepartmentId) {
        this.departmentId=deptId
     }
-
+    override fun getDepartmentId(): DepartmentId? {
+        return this.departmentId
+    }
 
     override fun getDeptName(): String? {
         return this.deptName

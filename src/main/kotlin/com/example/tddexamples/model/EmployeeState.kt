@@ -10,7 +10,7 @@ import javax.persistence.*
  class EmployeeState:IEmployee {
 
     @Id
-    internal var id: String? = null
+    internal var id: String ?=null
 
     private var empName: String? = null
 
@@ -65,8 +65,6 @@ import javax.persistence.*
 
          this.departmentStateList=departmentStateList
     }
-
-
 
 
 }

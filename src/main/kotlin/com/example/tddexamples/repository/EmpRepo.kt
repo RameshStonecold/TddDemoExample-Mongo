@@ -9,10 +9,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface EmpRepo : MongoRepository<EmployeeState,String> {
 
-    /*@Query(value="{ 'id' : ?0 }")
-    fun findById_Id(id:String):EmployeeState
-    */
-
     @Query(value="{ 'id' : ?0 }")
     fun findById_id(id :String) :EmployeeState
 

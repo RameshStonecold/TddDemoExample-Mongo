@@ -4,6 +4,7 @@ import com.example.tddexamples.model.DepartmentState
 import com.example.tddexamples.model.Employee
 import com.example.tddexamples.model.EmployeeState
 import org.springframework.beans.BeanUtils
+import org.springframework.context.annotation.Bean
 import kotlin.collections.ArrayList
 
 class EmployeeDtoConverter {
@@ -24,7 +25,9 @@ class EmployeeDtoConverter {
 
             val employeeState=EmployeeState()
 
-            BeanUtils.copyProperties(employeeDto,employeeState,"id")
+            BeanUtils.copyProperties(employeeDto,employeeState)
+
+            employeeState.id=employeeDto.employeeId.id
 
             if(employeeDto.departmentDtoList != null)
             {
@@ -73,7 +76,8 @@ class EmployeeDtoConverter {
 
         }
 
-        fun empBeanToEmpDto(employeeState: EmployeeState): EmployeeDto {
+        fun empBeanToEmpDto(employeeState: EmployeeState): EmployeeDto
+        {
 
             var employeeDto =EmployeeDto()
 

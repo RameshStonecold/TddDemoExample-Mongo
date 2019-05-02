@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 interface IDepartment {
 
-    fun getDepartmentID(): DepartmentId
+    fun getDepartmentId(): DepartmentId?
     fun setDepartmentId(deptId:DepartmentId)
 
     fun getDeptName():String?
